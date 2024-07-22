@@ -1,47 +1,25 @@
-import requests
-from bs4 import BeautifulSoup
-import sqlite3
-from datetime import datetime
-import json
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
 
+# Set up Chrome options
+chrome_options = Options()
+chrome_options.add_argument("--headless")  # Ensure GUI is off
+chrome_options.add_argument("--no-sandbox")  # Bypass OS security model
+chrome_options.add_argument("--disable-dev-shm-usage")  # Overcome limited resource problems
 
-# Load restaurants from JSON file
-def load_restaurants(file_path):
-    with open(file_path, "r") as file:
-        return json.load(file)
+# Assuming you have the Chrome WebDriver installed and its path is set in the system PATH
+service = Service()
 
+# Initialize the driver with the specified options
+driver = webdriver.Chrome(service=service, options=chrome_options)
 
-# Function to parse the HTML using the provided parser string
-def parse_html(soup, parser_str):
-    return eval(parser_str)
+driver.get('https://www.restaurangspill.se/')
 
+# Find the element using XPath
+spill = driver.find_element(By.XPATH, '/html/body/div/div[2]/div/div[2]/div[1]/div[3]/div/div')
 
-def scrape_menus():
-    restaurants = load_restaurants("restaurants.json")
-    conn = sqlite3.connect("menus.db")
-    cursor = conn.cursor()
+print(spill.text)
 
-    for restaurant in restaurants:
-        url = restaurant["url"]
-        parser_str = restaurant["parser"]
-
-        try:
-            response = requests.get(url)
-            response.raise_for_status()
-            soup = BeautifulSoup(response.content, "html.parser")
-            menu = parse_html(soup, parser_str)
-
-            cursor.execute(
-                "INSERT INTO menus (date, restaurant, menu) VALUES (?, ?, ?)",
-                (datetime.now().date(), restaurant["name"], menu),
-            )
-            print(f"Scraped menu from {restaurant['name']}: {menu}")
-        except Exception as e:
-            print(f"Failed to scrape {restaurant['name']}: {e}")
-
-    conn.commit()
-    conn.close()
-
-
-if __name__ == "__main__":
-    scrape_menus()
+driver.quit()
