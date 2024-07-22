@@ -1,17 +1,12 @@
 [
   {
-    "name": "Restaurant A",
-    "url": "http://example-restaurant-a.com/daily-menu",
-    "parser": "soup.find(id='daily-menu').text.strip()"
+    "name": "Restaurant Spill",
+    "url": "https://www.restaurangspill.se/",
+    "parser": "soup.find('div', class_='flex flex-col gap-4 md:gap-8')"
   },
   {
-    "name": "Restaurant B",
-    "url": "http://example-restaurant-b.com/menu",
-    "parser": "soup.select_one('.menu-item').text.strip()"
-  },
-  {
-    "name": "Restaurant C",
-    "url": "http://example-restaurant-c.com/today",
-    "parser": "soup.select_one('.today-menu').text.strip()"
+    "name": "Dockside Burgers",
+    "url": "https://malmo.docksideburgers.se/lunchmeny/",
+    "parser": "soup.find('div', class_='entry-content')"
   }
 ]
