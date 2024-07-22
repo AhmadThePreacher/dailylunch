@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Restaurant A",
+    "url": "http://example-restaurant-a.com/daily-menu",
+    "parser": "soup.find(id='daily-menu').text.strip()"
+  },
+  {
+    "name": "Restaurant B",
+    "url": "http://example-restaurant-b.com/menu",
+    "parser": "soup.select_one('.menu-item').text.strip()"
+  },
+  {
+    "name": "Restaurant C",
+    "url": "http://example-restaurant-c.com/today",
+    "parser": "soup.select_one('.today-menu').text.strip()"
+  }
+]
