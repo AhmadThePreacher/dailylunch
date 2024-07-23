@@ -1,25 +1,3 @@
-# import requests
-# from bs4 import BeautifulSoup
-
-# # URL of the page to scrape
-# url = 'https://www.restaurangspill.se/'
-
-# # Send an HTTP request to fetch the page content
-# response = requests.get(url)
-# response.raise_for_status()  # Ensure we notice bad responses
-
-# # Parse the HTML content using BeautifulSoup
-# soup = BeautifulSoup(response.content, 'html.parser')
-
-# # Locate the specific div using its class and id
-# div = soup.find('div', class_='flex flex-col gap-4 md:gap-8')
-
-# if div:
-#     print(div.get_text(separator='\n', strip=True))
-# else:
-#     print("Div not found")
-
-
 import requests
 from bs4 import BeautifulSoup
 import json
