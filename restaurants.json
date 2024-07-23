@@ -8,5 +8,10 @@
     "name": "Dockside Burgers",
     "url": "https://malmo.docksideburgers.se/lunchmeny/",
     "parser": "soup.find('div', class_='entry-content')"
+  },
+  {
+    "name": "Saltimporten",
+    "url": "https://www.saltimporten.com/",
+    "parser": "soup.find('div', class_='elementor-element elementor-element-1105e4c elementor-widget elementor-widget-text-editor')"
   }
 ]
