@@ -1,4 +1,4 @@
-fetch("/scraped_menus.json")
+fetch("scraped_menus.json")
     .then((response) => response.json())
     .then((data) => {
         const container = document.getElementById("menu-container");
