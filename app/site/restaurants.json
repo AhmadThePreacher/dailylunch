@@ -2,7 +2,7 @@
   {
     "name": "Restaurant Spill",
     "url": "https://www.restaurangspill.se/",
-    "parser": "soup.find('div', class_='flex flex-col gap-4 md:gap-8')"
+    "parser": "soup.find('div', class_='flex flex-col gap-4 md:gap-8 items-center')"
   },
   {
     "name": "Dockside Burgers",
