@@ -5,13 +5,23 @@
     "parser": "soup.find('div', class_='flex flex-col gap-4 md:gap-8 items-center')"
   },
   {
-    "name": "Dockside Burgers",
-    "url": "https://malmo.docksideburgers.se/lunchmeny/",
-    "parser": "soup.find('div', class_='entry-content')"
-  },
-  {
     "name": "Saltimporten",
     "url": "https://www.saltimporten.com/",
     "parser": "soup.find('div', class_='elementor-element elementor-element-1105e4c elementor-widget elementor-widget-text-editor')"
+  },
+  {
+    "name": "P2",
+    "url": "https://www.restaurangp2.se/lunch",
+    "parser": "soup.find('div', class_='col-md-12')"
+  },
+  {
+    "name": "Ubåtshallen",
+    "url": "https://www.ubatshallen.se/",
+    "parser": "soup.find('div', class_='entry-content')"
+  },
+  {
+    "name": "Stora Varvsgatan",
+    "url": "https://storavarvsgatan6.se/meny.html",
+    "parser": "soup.find('div', class_='styles_contentContainer__lrPIa textnormal styles_text__3jGMu')"
   }
 ]
