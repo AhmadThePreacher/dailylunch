@@ -22,6 +22,6 @@
   {
     "name": "Stora Varvsgatan",
     "url": "https://storavarvsgatan6.se/meny.html",
-    "parser": "soup.find('div', class_='styles_contentContainer__lrPIa textnormal styles_text__3jGMu')"
+    "parser": "soup.find('div', class_='image-container Mobile_imageComponent__QXWk1 Mobile_cropMode__cLuJp')"
   }
 ]
