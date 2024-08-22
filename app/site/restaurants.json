@@ -1,5 +1,10 @@
 [
   {
+    "name": "Glasklart",
+    "url": "https://glasklart.eu/sv/startsida/",
+    "parser": "soup.find('section', class_='content left')"
+  },
+  {
     "name": "Restaurang Spill",
     "url": "https://www.restaurangspill.se/",
     "parser": "soup.find('div', class_='flex flex-col gap-4 md:gap-8 items-center')"
