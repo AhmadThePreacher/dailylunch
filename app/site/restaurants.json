@@ -1,8 +1,13 @@
 [
   {
-    "name": "Restaurant Spill",
+    "name": "Restaurang Spill",
     "url": "https://www.restaurangspill.se/",
     "parser": "soup.find('div', class_='flex flex-col gap-4 md:gap-8 items-center')"
+  },
+  {
+    "name": "Mia Marias",
+    "url": "https://www.miamarias.nu/#dagens",
+    "parser": "soup.find('div', class_='et_pb_row et_pb_row_2')"
   },
   {
     "name": "Saltimporten",
