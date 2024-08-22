@@ -1,39 +1,76 @@
-# import requests
-# from bs4 import BeautifulSoup
-# import json
-
-# # Load the list of restaurants from the JSON file
-# with open("restaurants.json", "r") as file:
-#     restaurants = json.load(file)
-
-# # Dictionary to store the scraped data
-# scraped_menus = {}
-
-# # Loop over each restaurant
-# for restaurant in restaurants:
-#     response = requests.get(restaurant["url"])
-#     response.encoding = "utf-8"  # Manually set encoding to UTF-8
-#     html_content = response.text
-#     soup = BeautifulSoup(response.content, "html.parser")
-
-#     # Dynamically execute the parser string from the JSON file
-#     div = eval(restaurant["parser"])
-
-#     if div:
-#         print(div.get_text(separator="\n", strip=True))
-#         scraped_menus[restaurant["name"]] = div.get_text(separator="\n", strip=True)
-
-# # Write the scraped menus to a new JSON file
-# with open("scraped_menus.json", "w", encoding="utf-8") as file:
-#     json.dump(scraped_menus, file, indent=4, ensure_ascii=False)
-
-# print("Scraping completed and data stored in 'scraped_menus.json'")
-
-
 import requests
-from bs4 import BeautifulSoup
 import json
 from datetime import datetime
+from bs4 import BeautifulSoup
+
+def send_adaptive_card_to_teams(webhook_url, card_payload):
+    headers = {
+        "Content-Type": "application/json"
+    }
+    response = requests.post(webhook_url, headers=headers, json=card_payload)
+    
+    # Log the response details
+    # print(f"Request to Teams returned status code {response.status_code}")
+    # print(f"Response text: {response.text}")
+    
+    if response.status_code not in [200, 202]:
+        raise ValueError(f"Request to Teams returned an error {response.status_code}, the response is:\n{response.text}")
+
+def extract_today_menu(full_menu_text, current_day, current_day_upper=None):
+    start_index = full_menu_text.find(current_day)
+    if start_index == -1 and current_day_upper:
+        start_index = full_menu_text.find(current_day_upper)
+    if start_index == -1:
+        return None
+    next_day_start_index = len(full_menu_text)
+    for day, day_upper in zip(days_in_swedish.values(), days_in_swedish_upper.values()):
+        if day != current_day and day_upper != current_day_upper:
+            next_day_index = full_menu_text.find(day, start_index + len(current_day))
+            next_day_upper_index = full_menu_text.find(day_upper, start_index + len(current_day_upper or ""))
+            if next_day_index != -1 and next_day_index < next_day_start_index:
+                next_day_start_index = next_day_index
+            if next_day_upper_index != -1 and next_day_upper_index < next_day_start_index:
+                next_day_start_index = next_day_upper_index
+    today_menu = full_menu_text[start_index:next_day_start_index].strip()
+    return today_menu
+
+def create_adaptive_card_payload(menus):
+    today_date = datetime.now().strftime("%Y-%m-%d")
+    card_content = {
+        "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+        "type": "AdaptiveCard",
+        "version": "1.2",
+        "body": [
+            {
+                "type": "TextBlock",
+                "text": f"**Today's Menus ({today_date})**",
+                "weight": "Bolder",
+                "size": "Medium"
+            }
+        ]
+    }
+    for restaurant, menu in menus.items():
+        card_content["body"].append({
+            "type": "TextBlock",
+            "text": f"{restaurant}:",
+            "weight": "Bolder"
+        })
+        card_content["body"].append({
+            "type": "TextBlock",
+            "text": menu.replace('\n', '\n\n'),
+            "wrap": True
+        })
+    card_payload = {
+        "type": "message",
+        "attachments": [
+            {
+                "contentType": "application/vnd.microsoft.card.adaptive",
+                "contentUrl": None,
+                "content": card_content
+            }
+        ]
+    }
+    return card_payload
 
 # Map English days to Swedish days, including uppercase for Saltimporten
 days_in_swedish = {
@@ -46,7 +83,6 @@ days_in_swedish = {
     "Sunday": "Söndag"
 }
 
-# Map English days to Swedish uppercase days for Saltimporten
 days_in_swedish_upper = {
     "Monday": "MÅNDAG",
     "Tuesday": "TISDAG",
@@ -57,78 +93,43 @@ days_in_swedish_upper = {
     "Sunday": "SÖNDAG"
 }
 
-# Get the current day in Swedish
 current_day = days_in_swedish[datetime.now().strftime("%A")]
 current_day_upper = days_in_swedish_upper[datetime.now().strftime("%A")]
 
-# Load the list of restaurants from the JSON file
-with open("restaurants.json", "r") as file:
+with open("restaurants.json", "r", encoding="utf-8") as file:
     restaurants = json.load(file)
 
-# Dictionary to store the scraped data
 scraped_menus = {}
 
-# Function to extract today's menu from the full text
-def extract_today_menu(full_menu_text, current_day, current_day_upper=None):
-    # Try finding today's menu in the normal case
-    start_index = full_menu_text.find(current_day)
-    
-    # If not found, try finding in the uppercase case (for Saltimporten)
-    if start_index == -1 and current_day_upper:
-        start_index = full_menu_text.find(current_day_upper)
-        
-    if start_index == -1:
-        return None  # Couldn't find today's menu
-
-    # Find the start of the next day's menu
-    next_day_start_index = len(full_menu_text)
-    for day, day_upper in zip(days_in_swedish.values(), days_in_swedish_upper.values()):
-        if day != current_day and day_upper != current_day_upper:
-            next_day_index = full_menu_text.find(day, start_index + len(current_day))
-            next_day_upper_index = full_menu_text.find(day_upper, start_index + len(current_day_upper or ""))
-
-            if next_day_index != -1 and next_day_index < next_day_start_index:
-                next_day_start_index = next_day_index
-            if next_day_upper_index != -1 and next_day_upper_index < next_day_start_index:
-                next_day_start_index = next_day_upper_index
-
-    # Extract and return today's menu
-    today_menu = full_menu_text[start_index:next_day_start_index].strip()
-    return today_menu
-
-# Loop over each restaurant
 for restaurant in restaurants:
     response = requests.get(restaurant["url"])
-    response.encoding = "utf-8"  # Manually set encoding to UTF-8
+    response.encoding = "utf-8"
     html_content = response.text
     soup = BeautifulSoup(response.content, "html.parser")
-
-    # Dynamically execute the parser string from the JSON file
     div = eval(restaurant["parser"])
-
     if div:
-        # Correctly decode the text if needed
         full_menu_text = div.get_text(separator="\n", strip=True)
-        
-        # Special handling for Restaurang Spill (no need to filter by day)
         if restaurant["name"] == "Restaurang Spill":
-            today_menu = full_menu_text  # Use the full menu text as is
+            today_menu = full_menu_text
         else:
-            # Handle other restaurants with day filtering
             today_menu = extract_today_menu(full_menu_text, current_day, current_day_upper)
-
         if today_menu:
-            print(f"Today's menu for {restaurant['name']}:\n{today_menu}\n")
+            # print(f"Today's menu for {restaurant['name']}:\n{today_menu}\n")
             scraped_menus[restaurant["name"]] = today_menu
         else:
-            print(f"No menu found for {restaurant['name']} on {current_day}.")
+            # print(f"No menu found for {restaurant['name']} on {current_day}.")
             scraped_menus[restaurant["name"]] = f"No menu available for {current_day}."
     else:
-        print(f"No data could be extracted for {restaurant['name']}.")
+        # print(f"No data could be extracted for {restaurant['name']}.")
         scraped_menus[restaurant["name"]] = "No data available."
 
-# Write the scraped menus to a new JSON file
 with open("scraped_menus.json", "w", encoding="utf-8") as file:
     json.dump(scraped_menus, file, indent=2, ensure_ascii=False)
 
-print("Scraping completed and today's data stored in 'scraped_menus.json'")
+# print("Scraping completed and today's data stored in 'scraped_menus.json'")
+
+adaptive_card_payload = create_adaptive_card_payload(scraped_menus)
+
+webhook_url = "https://prod-46.westeurope.logic.azure.com:443/workflows/2814f63f957a46bfa96decaad9fc8fbe/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Pi1t_cN2Q5H7x_Dev_ZUS2z9JXCpEmQEBbPBzNYI7uI"  # Replace with your actual webhook URL
+# print(f"Payload being sent to Teams: {json.dumps(adaptive_card_payload, indent=2)}")
+send_adaptive_card_to_teams(webhook_url, adaptive_card_payload)
