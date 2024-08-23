@@ -47,6 +47,13 @@ def create_adaptive_card_payload(menus):
                 "weight": "Bolder",
                 "size": "Medium"
             }
+        ],
+        "actions": [
+            {
+                "type": "Action.OpenUrl",
+                "title": "View on the Web",
+                "url": "https://daily-lunch.onrender.com/"
+            }
         ]
     }
     for restaurant, menu in menus.items():
