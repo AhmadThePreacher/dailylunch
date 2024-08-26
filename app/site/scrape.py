@@ -9,10 +9,6 @@ def send_adaptive_card_to_teams(webhook_url, card_payload):
     }
     response = requests.post(webhook_url, headers=headers, json=card_payload)
     
-    # Log the response details
-    # print(f"Request to Teams returned status code {response.status_code}")
-    # print(f"Response text: {response.text}")
-    
     if response.status_code not in [200, 202]:
         raise ValueError(f"Request to Teams returned an error {response.status_code}, the response is:\n{response.text}")
 
@@ -45,7 +41,7 @@ def create_adaptive_card_payload(menus):
                 "type": "TextBlock",
                 "text": f"**Today's Menus ({today_date})**",
                 "weight": "Bolder",
-                "size": "Medium"
+                "size": "ExtraLarge"
             }
         ],
         "actions": [
@@ -60,7 +56,8 @@ def create_adaptive_card_payload(menus):
         card_content["body"].append({
             "type": "TextBlock",
             "text": f"{restaurant}:",
-            "weight": "Bolder"
+            "weight": "Bolder",
+            "size": "Large",
         })
         card_content["body"].append({
             "type": "TextBlock",
@@ -79,7 +76,6 @@ def create_adaptive_card_payload(menus):
     }
     return card_payload
 
-# Map English days to Swedish days, including uppercase for Saltimporten
 days_in_swedish = {
     "Monday": "Måndag",
     "Tuesday": "Tisdag",
@@ -121,22 +117,16 @@ for restaurant in restaurants:
         else:
             today_menu = extract_today_menu(full_menu_text, current_day, current_day_upper)
         if today_menu:
-            # print(f"Today's menu for {restaurant['name']}:\n{today_menu}\n")
             scraped_menus[restaurant["name"]] = today_menu
         else:
-            # print(f"No menu found for {restaurant['name']} on {current_day}.")
             scraped_menus[restaurant["name"]] = f"No menu available for {current_day}."
     else:
-        # print(f"No data could be extracted for {restaurant['name']}.")
         scraped_menus[restaurant["name"]] = "No data available."
 
 with open("scraped_menus.json", "w", encoding="utf-8") as file:
     json.dump(scraped_menus, file, indent=2, ensure_ascii=False)
 
-# print("Scraping completed and today's data stored in 'scraped_menus.json'")
-
 adaptive_card_payload = create_adaptive_card_payload(scraped_menus)
 
 webhook_url = "https://prod-149.westeurope.logic.azure.com:443/workflows/40403b70d0fa49ff928e9ac2f2f5c2cc/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=EkiM3EjfODxur9SEeusqOQEyFHQmhvrp--OKikf2UJQ"  # Replace with your actual webhook URL
-# print(f"Payload being sent to Teams: {json.dumps(adaptive_card_payload, indent=2)}")
 send_adaptive_card_to_teams(webhook_url, adaptive_card_payload)
