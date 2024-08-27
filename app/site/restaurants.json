@@ -1,10 +1,5 @@
 [
   {
-    "name": "Glasklart",
-    "url": "https://glasklart.eu/sv/startsida/",
-    "parser": "soup.find('section', class_='content left')"
-  },
-  {
     "name": "Restaurang Spill",
     "url": "https://www.restaurangspill.se/",
     "parser": "soup.find('div', class_='flex flex-col gap-4 md:gap-8 items-center')"
@@ -13,11 +8,6 @@
     "name": "Mia Marias",
     "url": "https://www.miamarias.nu/#dagens",
     "parser": "soup.find('div', class_='et_pb_row et_pb_row_2')"
-  },
-  {
-    "name": "Saltimporten",
-    "url": "https://www.saltimporten.com/",
-    "parser": "soup.find('div', class_='elementor-element elementor-element-1105e4c elementor-widget elementor-widget-text-editor')"
   },
   {
     "name": "P2",
@@ -33,5 +23,15 @@
     "name": "Stora Varvsgatan",
     "url": "https://storavarvsgatan6.se/meny.html",
     "parser": "soup.find('div', class_='image-container Mobile_imageComponent__QXWk1 Mobile_cropMode__cLuJp')"
+  },
+  {
+    "name": "Glasklart",
+    "url": "https://glasklart.eu/sv/startsida/",
+    "parser": "soup.find('section', class_='content left')"
+  },
+  {
+    "name": "Saltimporten",
+    "url": "https://www.saltimporten.com/",
+    "parser": "soup.find('div', class_='elementor-element elementor-element-1105e4c elementor-widget elementor-widget-text-editor')"
   }
 ]
