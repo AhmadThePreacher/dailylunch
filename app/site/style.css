@@ -4,8 +4,9 @@ body {
     line-height: 1.5;
     color: #f4f4f4;
     background-color: #333;
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
+    width: 70vw;
 }
 h1,
 h2,
@@ -21,10 +22,16 @@ h2 {
 }
 
 #menu-container {
-    width: 50vw;
-    margin: 20px;
-    margin-left: auto;
-    margin-right: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Optional: Adds space between the divs */
+}
+.restaurant {
+    flex: 1 1 calc(50% - 20px);
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
 }
 p {
     margin: 0 0 1em 0;
