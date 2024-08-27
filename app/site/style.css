@@ -30,6 +30,7 @@ h1 {
     left: -135px;
     transform: translateY(-50%) rotate(-90deg) translateX(-50%);
     color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
 }
 h2 {
     font-size: 2.5em;
