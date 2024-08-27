@@ -34,7 +34,7 @@ h2 {
 .restaurant {
     flex: 1 1 calc(50% - 20px);
     box-sizing: border-box;
-    padding: 10px 0 0 20px;
+    padding: 8px 0 0 20px;
     border-radius: 15px;
     background-color: rgba(255, 255, 255, 0.1);
 }
