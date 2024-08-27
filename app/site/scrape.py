@@ -113,7 +113,7 @@ for restaurant in restaurants:
     if div:
         full_menu_text = div.get_text(separator="\n", strip=True)
         if restaurant["name"] == "Restaurang Spill":
-            today_menu = full_menu_text
+            today_menu = full_menu_text.split("125")[0].strip()
         else:
             today_menu = extract_today_menu(full_menu_text, current_day, current_day_upper)
         if today_menu:
