@@ -3,8 +3,8 @@ body {
     font-size: 16px;
     line-height: 1.5;
     color: #f4f4f4;
-    background-color: #333;
-    margin: 0 auto;
+    background-color: #222;
+    margin: 20px auto;
     padding: 0;
     width: 70vw;
 }
@@ -29,9 +29,11 @@ h2 {
 .restaurant {
     flex: 1 1 calc(50% - 20px);
     box-sizing: border-box;
-    padding: 10px;
-    border: 1px solid #ccc;
+    padding: 10px 0 0 20px;
+    border: 1px solid #505050;
     margin-bottom: 20px;
+    border-radius: 15px;
+    background-color: #333;
 }
 p {
     margin: 0 0 1em 0;
