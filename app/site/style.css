@@ -7,6 +7,11 @@ body {
     margin: 20px auto;
     padding: 0;
     width: 70vw;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 h1,
 h2,
@@ -24,24 +29,26 @@ h2 {
 #menu-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px; /* Optional: Adds space between the divs */
+    gap: 20px;
 }
 .restaurant {
     flex: 1 1 calc(50% - 20px);
     box-sizing: border-box;
     padding: 10px 0 0 20px;
-    border: 1px solid #505050;
-    margin-bottom: 20px;
     border-radius: 15px;
-    background-color: #333;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 p {
     margin: 0 0 1em 0;
     padding: 0;
 }
 img {
-    width: 10vw;
     height: auto;
-    margin: 20px auto;
     display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    opacity: 0.05;
 }
