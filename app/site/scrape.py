@@ -39,9 +39,11 @@ def create_adaptive_card_payload(menus):
         "body": [
             {
                 "type": "TextBlock",
-                "text": f"**Today's Menus ({today_date})**",
-                "weight": "Bolder",
-                "size": "ExtraLarge"
+                "text": f"**TODAY'S MENUS ({today_date})**",
+                "horizontalAlignment": "Center",
+                "size": "ExtraLarge",
+                "style": "heading",
+                "weight": "Bolder"
             }
         ],
         "actions": [
@@ -56,12 +58,16 @@ def create_adaptive_card_payload(menus):
         card_content["body"].append({
             "type": "TextBlock",
             "text": f"{restaurant}:",
+            "style": "heading",
             "weight": "Bolder",
             "size": "Large",
+            "separator": True,
+            "spacing": "ExtraLarge"
+
         })
         card_content["body"].append({
             "type": "TextBlock",
-            "text": menu.replace('\n', '\n\n'),
+            "text": menu.replace('\n', '\\\n'),
             "wrap": True
         })
     card_payload = {
@@ -128,5 +134,6 @@ with open("scraped_menus.json", "w", encoding="utf-8") as file:
 
 adaptive_card_payload = create_adaptive_card_payload(scraped_menus)
 
-webhook_url = "https://prod-149.westeurope.logic.azure.com:443/workflows/40403b70d0fa49ff928e9ac2f2f5c2cc/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=EkiM3EjfODxur9SEeusqOQEyFHQmhvrp--OKikf2UJQ"  # Replace with your actual webhook URL
+webhook_url = "https://prod-149.westeurope.logic.azure.com:443/workflows/40403b70d0fa49ff928e9ac2f2f5c2cc/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=EkiM3EjfODxur9SEeusqOQEyFHQmhvrp--OKikf2UJQ"
+# webhook_url = "https://prod-208.westeurope.logic.azure.com:443/workflows/32aa8e858e964fbc86e82c49fc921cc3/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=lUXwWCjUkly6oD5JaLImwot5nEJRJN2JP44vchm1iLg"
 send_adaptive_card_to_teams(webhook_url, adaptive_card_payload)
