@@ -1,36 +1,36 @@
 [
   {
-    "name": "Restaurang Spill",
+    "name": "Restaurang Spill (6min)",
     "url": "https://www.restaurangspill.se/",
     "parser": "soup.find('div', class_='flex flex-col gap-4 md:gap-8 items-center')"
   },
   {
-    "name": "Mia Marias",
+    "name": "Mia Marias (3min)",
     "url": "https://www.miamarias.nu/#dagens",
     "parser": "soup.find('div', class_='et_pb_row et_pb_row_2')"
   },
   {
-    "name": "P2",
+    "name": "P2 (3min)",
     "url": "https://www.restaurangp2.se/lunch",
     "parser": "soup.find('div', class_='col-md-12')"
   },
   {
-    "name": "Ubåtshallen",
+    "name": "Ubåtshallen (6min)",
     "url": "https://www.ubatshallen.se/",
     "parser": "soup.find('div', class_='entry-content')"
   },
   {
-    "name": "Stora Varvsgatan",
+    "name": "Stora Varvsgatan (5min)",
     "url": "https://storavarvsgatan6.se/meny.html",
     "parser": "soup.find('div', class_='image-container Mobile_imageComponent__QXWk1 Mobile_cropMode__cLuJp')"
   },
   {
-    "name": "Glasklart",
+    "name": "Glasklart (1min)",
     "url": "https://glasklart.eu/sv/startsida/",
     "parser": "soup.find('section', class_='content left')"
   },
   {
-    "name": "Saltimporten",
+    "name": "Saltimporten (24min)",
     "url": "https://www.saltimporten.com/",
     "parser": "soup.find('div', class_='elementor-element elementor-element-1105e4c elementor-widget elementor-widget-text-editor')"
   }
