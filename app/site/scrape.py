@@ -118,12 +118,17 @@ for restaurant in restaurants:
     div = eval(restaurant["parser"])
     if div:
         full_menu_text = div.get_text(separator="\n", strip=True)
+
+        if restaurant["name"] == "Ubåtshallen (6min)":
+            if "På fredagar" in full_menu_text:
+                full_menu_text = full_menu_text.split("På fredagar")[0].strip()
+
+        if restaurant["name"] == "Stora Varvsgatan (5min)":
+            if "Öppettider" in full_menu_text:
+                full_menu_text = full_menu_text.split("Öppettider")[0].strip()
+
         if restaurant["name"] == "Restaurang Spill (6min)":
             today_menu = full_menu_text.split("125")[0].strip()
-        elif restaurant["name"] == "Ubåtshallen (6min)":
-            today_menu = full_menu_text.split("På fredagar")[0].strip()
-        elif restaurant["name"] == "Stora Varvsgatan (5min)":
-            today_menu = full_menu_text.split("Öppettider")[0].strip()
         else:
             today_menu = extract_today_menu(full_menu_text, current_day, current_day_upper)
         if today_menu:
@@ -132,6 +137,7 @@ for restaurant in restaurants:
             scraped_menus[restaurant["name"]] = f"No menu available for {current_day}."
     else:
         scraped_menus[restaurant["name"]] = "No data available."
+
 
 with open("scraped_menus.json", "w", encoding="utf-8") as file:
     json.dump(scraped_menus, file, indent=2, ensure_ascii=False)
