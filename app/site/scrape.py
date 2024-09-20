@@ -122,7 +122,7 @@ for restaurant in restaurants:
             today_menu = full_menu_text.split("125")[0].strip()
         elif restaurant["name"] == "Ubåtshallen (6min)":
             today_menu = full_menu_text.split("På fredagar")[0].strip()
-        elif restaurant["name"] == "Restaurang Kåken (6min)":
+        elif restaurant["name"] == "Stora Varvsgatan (5min)":
             today_menu = full_menu_text.split("Öppettider")[0].strip()
         else:
             today_menu = extract_today_menu(full_menu_text, current_day, current_day_upper)
