@@ -93,7 +93,7 @@ days_in_swedish = {
 }
 
 days_in_swedish_upper = {
-    "Monday": "MÅNDAG",
+    "Monday": "MÅNDAG",
     "Tuesday": "TISDAG",
     "Wednesday": "ONSDAG",
     "Thursday": "TORSDAG",
