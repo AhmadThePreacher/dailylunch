@@ -20,11 +20,6 @@
     "parser": "soup.find('div', class_='entry-content')"
   },
   {
-    "name": "Stora Varvsgatan (5min)",
-    "url": "https://storavarvsgatan6.se/meny.html",
-    "parser": "soup.find('div', class_='image-container Mobile_imageComponent__QXWk1 Mobile_cropMode__cLuJp')"
-  },
-  {
     "name": "Glasklart (1min)",
     "url": "https://glasklart.eu/sv/startsida/",
     "parser": "soup.find('section', class_='content left')"
