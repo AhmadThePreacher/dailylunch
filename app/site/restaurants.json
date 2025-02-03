@@ -11,7 +11,7 @@
   },
   {
     "name": "P2 (3min)",
-    "url": "https://www.restaurangp2.se/lunch",
+    "url": "https://www.restaurangp2.se/#lunch",
     "parser": "soup.find('div', class_='e-con-inner')"
   },
   {
