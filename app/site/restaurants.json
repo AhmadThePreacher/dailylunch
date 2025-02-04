@@ -12,7 +12,7 @@
   {
     "name": "P2 (3min)",
     "url": "https://restaurangp2.se/#lunch",
-    "parser": "soup.find('div', class_='elementor-element-4986ca6')"
+    "parser": "soup.find('div', class_='page-content')"
   },
   {
     "name": "Ubåtshallen (6min)",
