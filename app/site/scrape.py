@@ -123,10 +123,6 @@ for restaurant in restaurants:
             if "På fredagar" in full_menu_text:
                 full_menu_text = full_menu_text.split("På fredagar")[0].strip()
 
-        if restaurant["name"] == "Stora Varvsgatan (5min)":
-            if "Öppettider" in full_menu_text:
-                full_menu_text = full_menu_text.split("Öppettider")[0].strip()
-
         if restaurant["name"] == "Restaurang Spill (6min)":
             today_menu = full_menu_text.split("125")[0].strip()
         else:
