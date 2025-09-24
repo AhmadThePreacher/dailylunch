@@ -1,5 +1,6 @@
 import requests
 import json
+import re
 from datetime import datetime
 from lxml import html as lxml_html
 
@@ -48,31 +49,40 @@ with open("restaurants.json", "r", encoding="utf-8") as file:
     restaurants = json.load(file)
 
 scraped_menus = {}
-
 for restaurant in restaurants:
-    response = requests.get(restaurant["url"])
-    response.encoding = "utf-8"
-    tree = lxml_html.fromstring(response.content)
+    try:
+        response = requests.get(restaurant["url"], timeout=10)
+        response.raise_for_status() # Raise an exception for bad status codes (4xx or 5xx)
+        response.encoding = "utf-8"
+        tree = lxml_html.fromstring(response.content)
+        
+        elements = tree.xpath(restaurant["xpath"])
+        if elements:
+            full_menu_text = "\n".join([elem.text_content().strip() for elem in elements if elem.text_content().strip()])
     
-    elements = tree.xpath(restaurant["xpath"])
-    if elements:
-        full_menu_text = "\n".join([elem.text_content().strip() for elem in elements if elem.text_content().strip()])
-
-        if restaurant["name"] == "Restaurang Spill (1 min)":
-            # The menu starts after the date and ends before the price.
-            # Example: "onsdag...menu text...130kr"
-            try:
-                today_menu = full_menu_text.split(current_day)[1].split("kr")[0].strip() + "kr"
-            except IndexError:
-                today_menu = None # Could not find the menu for today
+            if restaurant["name"] == "Restaurang Spill (1 min)":
+                # For Restaurang Spill, we need to parse the block to get today's menu.
+                # The menu starts with the day and ends with "kr".
+                try:
+                    # 1. Isolate the relevant menu block for today.
+                    menu_block = full_menu_text.split(current_day.lower())[1]
+                    menu_block = menu_block.split("kr")[0] + "kr"
+                    # 2. Remove the date (e.g., ", 24/9, 2025") after the day name.
+                    # This regex removes the comma, whitespace, and the date itself.
+                    today_menu = re.sub(r'^,\s*\d{1,2}/\d{1,2},\s*\d{4}', '', menu_block, 1).strip()
+                except IndexError:
+                    today_menu = None # Could not parse the menu block
+            else:
+                today_menu = extract_today_menu(full_menu_text, current_day, current_day_upper)
+            
+            if today_menu:
+                scraped_menus[restaurant["name"]] = today_menu
+            else:
+                scraped_menus[restaurant["name"]] = f"No menu available for {current_day}."
         else:
-            today_menu = extract_today_menu(full_menu_text, current_day, current_day_upper)
-        if today_menu:
-            scraped_menus[restaurant["name"]] = today_menu
-        else:
-            scraped_menus[restaurant["name"]] = f"No menu available for {current_day}."
-    else:
-        scraped_menus[restaurant["name"]] = "No data available."
+            scraped_menus[restaurant["name"]] = "Menu container not found on page."
+    except requests.exceptions.RequestException as e:
+        scraped_menus[restaurant["name"]] = f"Could not fetch page: {e}"
 
 
 with open("scraped_menus.json", "w", encoding="utf-8") as file:
