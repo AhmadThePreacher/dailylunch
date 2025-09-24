@@ -1,7 +1,6 @@
 # Daily Lunch Scraper
 
-This project scrapes the daily lunch menus from nearby restaurants and displays them on a single, clean webpage. It also sends a daily notification with the menus to a Microsoft Teams channel.
-
+This project scrapes the daily lunch menus from nearby restaurants and displays them on a single, clean webpage.
 The process is automated: a Python script fetches the data, generates a static JSON file for the website, and pushes the results to the repository.
 
 ## How It Works
@@ -11,7 +10,6 @@ The process is automated: a Python script fetches the data, generates a static J
 3.  It extracts the menu for the current day and handles restaurant-specific formatting.
 4.  The scraped menus are saved to `app/site/scraped_menus.json`.
 5.  The static webpage (`app/site/index.html`) uses JavaScript to fetch this JSON file and dynamically display the menus.
-6.  The script also formats the menus into a Microsoft Teams Adaptive Card and sends it to a pre-configured webhook.
 
 ## Technologies Used
 
