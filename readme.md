@@ -56,9 +56,9 @@ To run the scraper manually and update the menus:
     cd app/site
     ```
 2.  Run the scraper script:
-    `bash
-python scrape.py
-`
+    ```bash
+    python scrape.py
+    ```
     This will update the `scraped_menus.json` file. You can then open `index.html` in your browser to see the results locally.
 
 ## Contributing
