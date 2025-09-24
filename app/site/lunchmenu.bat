@@ -1,5 +1,5 @@
 @echo off
-cd C:\Projects\dailylunch\app\site
+cd C:\Users\ahmkad\Projects\dailylunch\app\site
 python scrape.py
 
 git add .
