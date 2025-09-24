@@ -61,19 +61,16 @@ for restaurant in restaurants:
             full_menu_text = "\n".join([elem.text_content().strip() for elem in elements if elem.text_content().strip()])
     
             if restaurant["name"] == "Restaurang Spill (1 min)":
-                # For Restaurang Spill, we need to parse the block to get today's menu.
-                # The menu starts with the day and ends with "kr".
                 try:
-                    # 1. Isolate the relevant menu block for today.
                     menu_block = full_menu_text.split(current_day.lower())[1]
                     menu_block = menu_block.split("kr")[0] + "kr"
-                    # 2. Remove the date (e.g., ", 24/9, 2025") after the day name.
-                    # This regex removes the comma, whitespace, and the date itself.
                     today_menu = re.sub(r'^,\s*\d{1,2}/\d{1,2},\s*\d{4}', '', menu_block, 1).strip()
                 except IndexError:
-                    today_menu = None # Could not parse the menu block
+                    today_menu = None
             else:
                 today_menu = extract_today_menu(full_menu_text, current_day, current_day_upper)
+                if today_menu and restaurant["name"] == "Cicchetti (5 min)":
+                    today_menu += "\n149 kr, bryggkaffe & sallads buffé ingår."
             
             if today_menu:
                 scraped_menus[restaurant["name"]] = today_menu
