@@ -70,7 +70,7 @@ for restaurant in restaurants:
             else:
                 today_menu = extract_today_menu(full_menu_text, current_day, current_day_upper)
                 if today_menu and restaurant["name"] == "Cicchetti (5 min)":
-                    today_menu += "\n149 kr, bryggkaffe & sallads buffé ingår."
+                    today_menu += "\n\n149 kr, bryggkaffe & sallads buffé ingår."
             
             if today_menu:
                 scraped_menus[restaurant["name"]] = today_menu
