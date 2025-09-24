@@ -1,12 +1,12 @@
 [
   {
     "name": "Restaurang Spill (1 min)",
-    "url": "https://www.restaurangspill.se/",
-    "parser": "soup.find('div', class_='flex flex-col gap-4 md:gap-8 w-full items-center')"
+    "url": "https://www.restaurangspill.se/dagens-lunch",
+    "xpath": "//*[@id=\"dagens\"]/div[3]/div[3]/div/div"
   },
   {
     "name": "Cicchetti (5 min)",
     "url": "https://www.cicchetti.se/om-mig",
-    "parser": "soup.find('div', class_='styles_contentContainer__lrPIa textnormal styles_text__3jGMu')"
+    "xpath": "//*[@id=\"Section1\"]/div/div/div[1]/div/div/div"
   }
 ]

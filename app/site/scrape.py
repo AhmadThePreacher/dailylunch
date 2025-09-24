@@ -1,7 +1,7 @@
 import requests
 import json
 from datetime import datetime
-from bs4 import BeautifulSoup
+from lxml import html as lxml_html
 
 def extract_today_menu(full_menu_text, current_day, current_day_upper=None):
     start_index = full_menu_text.find(current_day)
@@ -52,18 +52,19 @@ scraped_menus = {}
 for restaurant in restaurants:
     response = requests.get(restaurant["url"])
     response.encoding = "utf-8"
-    html_content = response.text
-    soup = BeautifulSoup(response.content, "html.parser")
-    div = eval(restaurant["parser"])
-    if div:
-        full_menu_text = div.get_text(separator="\n", strip=True)
-
-        if restaurant["name"] == "Ubåtshallen (6min)":
-            if "På fredagar" in full_menu_text:
-                full_menu_text = full_menu_text.split("På fredagar")[0].strip()
+    tree = lxml_html.fromstring(response.content)
+    
+    elements = tree.xpath(restaurant["xpath"])
+    if elements:
+        full_menu_text = "\n".join([elem.text_content().strip() for elem in elements if elem.text_content().strip()])
 
         if restaurant["name"] == "Restaurang Spill (1 min)":
-            today_menu = full_menu_text.split("125")[0].strip()
+            # The menu starts after the date and ends before the price.
+            # Example: "onsdag...menu text...130kr"
+            try:
+                today_menu = full_menu_text.split(current_day)[1].split("kr")[0].strip() + "kr"
+            except IndexError:
+                today_menu = None # Could not find the menu for today
         else:
             today_menu = extract_today_menu(full_menu_text, current_day, current_day_upper)
         if today_menu:

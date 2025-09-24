@@ -6,7 +6,7 @@ The process is automated: a Python script fetches the data, generates a static J
 ## How It Works
 
 1.  A Python script (`app/site/scrape.py`) reads a list of restaurants from `app/site/restaurants.json`.
-2.  For each restaurant, it fetches the menu page URL and parses the HTML using `BeautifulSoup` to find the menu content.
+2.  For each restaurant, it fetches the menu page URL and parses the HTML using `lxml` to find the menu content via an XPath expression.
 3.  It extracts the menu for the current day and handles restaurant-specific formatting.
 4.  The scraped menus are saved to `app/site/scraped_menus.json`.
 5.  The static webpage (`app/site/index.html`) uses JavaScript to fetch this JSON file and dynamically display the menus.
@@ -15,7 +15,7 @@ The process is automated: a Python script fetches the data, generates a static J
 
 -   Python
 -   `requests` for making HTTP requests.
--   `BeautifulSoup4` for parsing HTML.
+-   `lxml` for parsing HTML.
 -   HTML, CSS, and vanilla JavaScript for the frontend.
 
 ## Installation
@@ -71,7 +71,7 @@ Contributions are welcome! The easiest way to contribute is by adding a new rest
     -   Add a new JSON object to the list with the following keys:
         -   `name`: The name of the restaurant (e.g., `"My Favorite Cafe (10 min)"`).
         -   `url`: The direct URL to the restaurant's lunch menu page.
-        -   `parser`: A string containing a Python expression for `BeautifulSoup` to find the HTML element that contains the full week's menu. For example: `"soup.find('div', class_='menu-container')"`.
+        -   `xpath`: A string containing an XPath expression to find the HTML element that contains the menu. For example: `"//div[contains(@class, 'menu-container')]"`.
 3.  **Test your changes** by running `python app/site/scrape.py` and checking the output in `scraped_menus.json`.
     -   If the standard day-parsing logic in `scrape.py` doesn't work for your new restaurant, you may need to add custom handling logic within the main loop of the script.
 4.  **Commit your changes and create a Pull Request.**
