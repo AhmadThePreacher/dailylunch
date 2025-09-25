@@ -7,6 +7,19 @@
   {
     "name": "Cicchetti (5 min)",
     "url": "https://www.cicchetti.se/om-mig",
-    "xpath": "//div[contains(@class, 'styles_contentContainer__lrPIa')]"
+    "xpath": "//div[contains(@class, 'styles_contentContainer__lrPIa')]",
+    "suffix": "\n\n149 kr, bryggkaffe & sallads buffé ingår."
+  },
+  {
+    "name": "Percys (7 min)",
+    "type": "pdf_weekly",
+    "url_pattern": "https://www.malmoarena.com/hubfs/Dagens%20r%C3%A4tt%20v{week}%20{year}.pdf?hsLang=sv",
+    "suffix": "\n\n145 kr, salladsbord, hembakat bröd, smör & kaffe."
+  },
+  {
+    "name": "Edge Kitchen (10 min)",
+    "url": "https://edgekitchen.se/meny",
+    "xpath": "//*[@id=\"Section2\"]/div/div/div[3]/div/div/div",
+    "suffix": "\n\n149 kr."
   }
 ]
