@@ -112,6 +112,15 @@ for restaurant in restaurants:
                     today_menu = re.sub(r'^,\s*\d{1,2}/\d{1,2},\s*\d{4}', '', menu_block, 1).strip()
                 except IndexError:
                     today_menu = None
+            elif restaurant["name"] == "Cicchetti (5 min)":
+                today_menu = extract_today_menu(full_menu_text, current_day, current_day_upper)
+                if today_menu and "OBS=>" in today_menu:
+                    today_menu = today_menu.split("OBS=>")[0].strip()
+            else:
+                today_menu = extract_today_menu(full_menu_text, current_day, current_day_upper)
+            
+            if today_menu:
+                    today_menu = None
             else:
                 today_menu = extract_today_menu(full_menu_text, current_day, current_day_upper)
             
