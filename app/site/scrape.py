@@ -120,11 +120,6 @@ for restaurant in restaurants:
                 today_menu = extract_today_menu(full_menu_text, current_day, current_day_upper)
             
             if today_menu:
-                    today_menu = None
-            else:
-                today_menu = extract_today_menu(full_menu_text, current_day, current_day_upper)
-            
-            if today_menu:
                 if "suffix" in restaurant:
                     today_menu += restaurant["suffix"]
                 scraped_menus[restaurant["name"]] = today_menu
