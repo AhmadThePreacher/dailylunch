@@ -73,7 +73,7 @@ for restaurant in restaurants:
     if restaurant.get("type") == "pdf_weekly":
         try:
             now = datetime.now()
-            week_number = now.isocalendar()[1]
+            week_number = f"{now.isocalendar()[1]:02d}" # Pad with leading zero if needed
             year = now.year
             url_params = {'week': week_number, 'year': year}
             pdf_url = restaurant["url_pattern"].format(**url_params)
