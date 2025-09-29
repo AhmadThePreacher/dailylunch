@@ -4,10 +4,14 @@ import re
 import io
 from datetime import datetime
 from lxml import html as lxml_html
+import unicodedata
 import pdfplumber
 
 def extract_today_menu(full_menu_text, current_day, current_day_upper=None):
     day_str_found = None
+    # Normalize the text to handle different Unicode representations (e.g., for 'Å')
+    full_menu_text = unicodedata.normalize('NFC', full_menu_text)
+
     start_index = full_menu_text.find(current_day)
     if start_index != -1:
         day_str_found = current_day
@@ -52,11 +56,11 @@ days_in_swedish = {
 }
 
 days_in_swedish_upper = {
-    "Monday": "MÅNDAG",
+    "Monday": "MÅNDAG",
     "Tuesday": "TISDAG",
     "Wednesday": "ONSDAG",
     "Thursday": "TORSDAG",
-    "Friday": "FREDAG",
+    "Friday": "FREDAG", # This was likely fine, but good to be consistent
     "Saturday": "LÖRDAG",
     "Sunday": "SÖNDAG"
 }
