@@ -2,7 +2,7 @@
   {
     "name": "Restaurang Spill (1 min)",
     "url": "https://www.restaurangspill.se/",
-    "xpath": "//div[contains(@class, 'flex-col') and contains(@class, 'gap-4') and contains(@class, 'md:gap-24')]"
+    "xpath": "//*[@id=\"dagens\"]/div[3]/div[3]/div/div[1]"
   },
   {
     "name": "Cicchetti (5 min)",

@@ -137,3 +137,17 @@ for restaurant in restaurants:
 
 with open("scraped_menus.json", "w", encoding="utf-8") as file:
     json.dump(scraped_menus, file, indent=2, ensure_ascii=False)
+
+def log_run_datetime():
+    """Logs the current day, date, and time to dateTime.json."""
+    now = datetime.now()
+    run_info = {
+        "last_run_day": now.strftime("%A"),
+        "last_run_date": now.strftime("%Y-%m-%d"),
+        "last_run_time": now.strftime("%H:%M:%S")
+    }
+    with open("dateTime.json", "w", encoding="utf-8") as f:
+        json.dump(run_info, f, indent=4)
+    print(f"Successfully logged run time: {now.strftime('%A, %Y-%m-%d %H:%M:%S')}")
+
+log_run_datetime()

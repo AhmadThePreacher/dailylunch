@@ -48,6 +48,12 @@ h2 {
     border-radius: 15px;
     background-color: rgba(255, 255, 255, 0.1);
 }
+#dateTime {
+    font-size: 2em;
+    transform-origin: top left;
+    position: relative;
+    color: rgba(255, 255, 255, 0.5);
+}
 p {
     margin: 0 0 1em 0;
     padding: 0;
