@@ -1,6 +1,6 @@
 {
   "Restaurang Spill (1 min)": "No menu available for Onsdag.",
-  "Cicchetti (5 min)": "Could not fetch page: HTTPSConnectionPool(host='www.cicchetti.se', port=443): Max retries exceeded with url: /om-mig (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7f2510e8e1c0>: Failed to resolve 'www.cicchetti.se' ([Errno -2] Name or service not known)\"))",
+  "Cicchetti (5 min)": "Pasta – Citronsås – Räkor – Fetaost – Chili – Persilja – Solroskärnor\nPasta – Lemon sauce – Shrimps – Feta cheese – Chili – Parsley – Sunflower seeds\n\n149 kr, bryggkaffe & sallads buffé ingår.",
   "Percys (7 min)": "Högrevschili serveras med ris, nachochips, inlagd chili & lök\n\n145 kr, salladsbord, hembakat bröd, smör & kaffe.",
   "Edge Kitchen (10 min)": "Dagens: Köttbullar (fläsk) med potatispuré, gräddsås, rårörda lingon, pressgurka\nVegetarisk: Vegobullar med potatispuré, gräddsås, rårörda lingon, pressgurka\n\n149 kr."
 }
