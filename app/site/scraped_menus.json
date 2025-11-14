@@ -1,6 +1,6 @@
 {
-  "Restaurang Spill (1 min)": "Could not fetch page: HTTPSConnectionPool(host='www.restaurangspill.se', port=443): Read timed out. (read timeout=10)",
+  "Restaurang Spill (1 min)": "Hamburgare med pulled pork, coleslaw, sallad, vårlök och ostmajo serveras med rostad potatis \n(Finns fläskfritt alternativ) Vegetarisk: Svampburgare med coleslaw, sallad, vårlök och ostmajo serveras med rostad potatis\n(Finns veganskt alternativ)\n\nHa en härlig helg!     130kr",
   "Cicchetti (5 min)": "Pasta – Italienska Köttbullar – Tomatsås – Grana – Basilika\nPasta – Italian Meatballs – Tomatoe sauce – Grana - Basil\n\n149 kr, bryggkaffe & sallads buffé ingår.",
   "Percys (7 min)": "BBQ-buffé serveras med stort salladsbord & goda tillbehör\nGRÖNT, FISK, HÅLLBART & VEGETARISKT\nVår gröna buffé med fisk & vegetariska rätter samt\ngoda tillbehör – varieras under veckan\nFÅ 10% RABATT MED VÅRT LUNCHKORT\nLadda för minst 500 kr så har ni 10% rabatt på\nDagens lunchbuffé\nMALMÖ ARENA – PERCYS RESTAURANG – HYLLIE BOULEVARD 16 – 040-642 04 44\n\n145 kr, salladsbord, hembakat bröd, smör & kaffe.",
-  "Edge Kitchen (10 min)": "Could not fetch page: HTTPSConnectionPool(host='edgekitchen.se', port=443): Max retries exceeded with url: /meny (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7fd670b90e50>: Failed to resolve 'edgekitchen.se' ([Errno -2] Name or service not known)\"))"
+  "Edge Kitchen (10 min)": "Dagens: Grillad kalv med pommes, bearnaisesås, tomatsallad\nVegetarisk: Grillad rotselleri med pommes, bearnaisesås, tomatsallad\n \n \nRestaurangen: 0732-440051\nVID ALLERGIER KONTAKTA PERSONALEN\n Vi vill tacka alla kunder/ gäster som besöker oss.\n\n149 kr."
 }
