@@ -36,9 +36,8 @@
     "suffix": "149 kr, sallad, surdegsbröd och vatten ingår"
   },
   {
-    "name": "Resturang Pascal",
+    "name": "Restaurang Pascal",
     "url": "https://www.restaurangpascal.se/pascal-meny",
-    "xpath": "//*[@data-hook=\"items.container\"]",
-    "suffix": "\n\n149 kr."
+    "xpath": "//*[@data-hook=\"items.container\"]"
   }
 ]
