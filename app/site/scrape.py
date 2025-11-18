@@ -126,7 +126,8 @@ for restaurant in restaurants:
     
             if restaurant["name"] == "Restaurang Spill (1 min)":
                 menu_no_date = re.sub(r'^\w+,\s*\d{1,2}/\d{1,2},\s*\d{4}', '', full_menu_text).strip()
-                today_menu = menu_no_date.split("Ha en härlig dag!")[0].strip()
+                delimiter = restaurant.get("delimiter", "Ha en härlig dag!")
+                today_menu = menu_no_date.split(delimiter)[0].strip()
             elif restaurant["name"] == "Cicchetti (5 min)":
                 today_menu = extract_today_menu(full_menu_text, current_day, current_day_upper)
                 if today_menu and "OBS=>" in today_menu:
