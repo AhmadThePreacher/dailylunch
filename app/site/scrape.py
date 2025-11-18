@@ -125,12 +125,9 @@ for restaurant in restaurants:
             full_menu_text = "\n".join([elem.text_content().strip() for elem in elements if elem.text_content().strip()])
     
             if restaurant["name"] == "Restaurang Spill (1 min)":
-                try:
-                    menu_block = full_menu_text.split(current_day.lower())[1]
-                    menu_block = menu_block.split("kr")[0] + "kr"
-                    today_menu = re.sub(r'^,\s*\d{1,2}/\d{1,2},\s*\d{4}', '', menu_block, 1).strip()
-                except IndexError:
-                    today_menu = None
+                menu_no_date = re.sub(r'^\w+,\s*\d{1,2}/\d{1,2},\s*\d{4}', '', full_menu_text).strip()
+                delimiter = restaurant.get("delimiter", "Ha en härlig dag!")
+                today_menu = menu_no_date.split(delimiter)[0].strip()
             elif restaurant["name"] == "Cicchetti (5 min)":
                 today_menu = extract_today_menu(full_menu_text, current_day, current_day_upper)
                 if today_menu and "OBS=>" in today_menu:

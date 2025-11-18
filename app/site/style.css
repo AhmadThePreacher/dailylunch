@@ -4,14 +4,9 @@ body {
     line-height: 1.5;
     color: #f4f4f4;
     background-color: #222;
-    margin: 0 auto;
+    margin: 0;
     padding: 0;
-    width: 70vw;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    overflow-x: hidden;
 }
 h1,
 h2,
@@ -23,46 +18,82 @@ h6 {
     padding: 0;
 }
 h1 {
-    font-size: 100px;
+    font-size: clamp(60px, 8vw, 100px);
     transform-origin: top left;
     position: absolute;
-    top: 57%;
-    left: -135px;
-    transform: translateY(-50%) rotate(-90deg) translateX(-50%);
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%) rotate(-90deg);
     color: rgba(255, 255, 255, 0.5);
     text-transform: uppercase;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        position: static;
+        transform: none;
+        font-size: clamp(40px, 10vw, 60px);
+        text-align: center;
+        margin-bottom: 20px;
+    }
 }
 h2 {
-    font-size: 2.5em;
+    font-size: clamp(1rem, 4vw, 1.5rem);
+}
+
+#wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 #menu-container {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+    width: 100%;
 }
+
+@media (max-width: 768px) {
+    #wrapper {
+        padding: 20px 15px;
+    }
+
+    #menu-container {
+        grid-template-columns: 1fr;
+    }
+}
+
 .restaurant {
-    flex: 1 1 calc(50% - 20px);
     box-sizing: border-box;
-    padding: 8px 0 0 20px;
+    padding: 15px 20px;
     border-radius: 15px;
     background-color: rgba(255, 255, 255, 0.1);
+    min-width: 0;
+    overflow: hidden;
 }
 #dateTime {
-    font-size: 2em;
+    font-size: clamp(1rem, 2vw, 1.5rem);
     transform-origin: top left;
     position: relative;
     color: rgba(255, 255, 255, 0.5);
-    flex-basis: 100%;
+    grid-column: 1 / -1;
+    margin-bottom: 10px;
 }
 p {
     margin: 0 0 1em 0;
     padding: 0;
 }
 img {
+    max-width: 100%;
     height: auto;
     display: block;
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
