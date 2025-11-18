@@ -33,7 +33,17 @@ h1 {
     text-transform: uppercase;
 }
 h2 {
-    font-size: 2.5em;
+    font-size: clamp(1rem, 4vw, 1.5rem);
+}
+
+#wrapper {
+    position: relative;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #menu-container {
@@ -49,7 +59,7 @@ h2 {
     background-color: rgba(255, 255, 255, 0.1);
 }
 #dateTime {
-    font-size: 2em;
+    font-size: 1em;
     transform-origin: top left;
     position: relative;
     color: rgba(255, 255, 255, 0.5);
