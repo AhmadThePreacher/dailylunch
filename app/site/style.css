@@ -53,6 +53,7 @@ h2 {
     transform-origin: top left;
     position: relative;
     color: rgba(255, 255, 255, 0.5);
+    flex-basis: 100%;
 }
 p {
     margin: 0 0 1em 0;
