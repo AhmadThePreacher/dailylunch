@@ -104,7 +104,6 @@ for restaurant in restaurants:
         response.raise_for_status() # Raise an exception for bad status codes (4xx or 5xx)
         response.encoding = "utf-8"
         tree = lxml_html.fromstring(response.content)
-
         
         elements = tree.xpath(restaurant["xpath"])
 
@@ -136,6 +135,8 @@ for restaurant in restaurants:
                 today_menu = extract_today_menu(full_menu_text, current_day, current_day_upper)
                 if today_menu and "OBS=>" in today_menu:
                     today_menu = today_menu.split("OBS=>")[0].strip()
+            elif restaurant["name"] == "Gemyt med SMAK (5 min)":
+                today_menu = full_menu_text + "\n\n"
             else:
                 today_menu = extract_today_menu(full_menu_text, current_day, current_day_upper)
             
