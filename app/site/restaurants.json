@@ -24,10 +24,9 @@
     "suffix": "\n\n149 kr."
   },
   {
-    "name": "The Garden - Hyllie Terrass (2 min)",
-    "url": "https://compass.mashie.matildaplatform.com/public/app/hyllie+terrass/bb2a3372?country=se",
-    "xpath": "//div[@class='list-group-item list-group-item-menu' and count(preceding::div[@class='list-group-item list-group-item-menu']) < 3]",
-    "suffix": "138 kr."
+    "name": "Restaurang Pascal (10 min)",
+    "url": "https://www.restaurangpascal.se/pascal-meny",
+    "xpath": "//*[@data-hook=\"items.container\"]"
   },
   {
     "name": "Gemyt med SMAK (5 min)",
@@ -36,8 +35,9 @@
     "suffix": "149 kr, sallad, surdegsbröd och vatten ingår"
   },
   {
-    "name": "Restaurang Pascal",
-    "url": "https://www.restaurangpascal.se/pascal-meny",
-    "xpath": "//*[@data-hook=\"items.container\"]"
+    "name": "The Garden - Hyllie Terrass (2 min)",
+    "url": "https://compass.mashie.matildaplatform.com/public/app/hyllie+terrass/bb2a3372?country=se",
+    "xpath": "//div[@class='list-group-item list-group-item-menu' and count(preceding::div[@class='list-group-item list-group-item-menu']) < 3]",
+    "suffix": "138 kr."
   }
 ]
