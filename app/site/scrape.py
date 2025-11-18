@@ -128,7 +128,7 @@ for restaurant in restaurants:
                 try:
                     menu_block = full_menu_text.split(current_day.lower())[1]
                     menu_block = menu_block.split("kr")[0] + "kr"
-                    today_menu = re.sub(r'^,\s*\d{1,2}/\d{1,2},\s*\d{4}', '', menu_block, 1).strip()
+                    today_menu = re.sub(r'^,\s*\d{1,2}/\d{1,2},\s*\d{4}', '', menu_block, count=1).strip()
                 except IndexError:
                     today_menu = None
             elif restaurant["name"] == "Cicchetti (5 min)":
