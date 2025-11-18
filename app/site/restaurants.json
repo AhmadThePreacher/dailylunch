@@ -2,7 +2,8 @@
   {
     "name": "Restaurang Spill (1 min)",
     "url": "https://www.restaurangspill.se/",
-    "xpath": "//*[@id=\"dagens\"]/div[3]/div[3]/div/div[1]"
+    "xpath": "//*[@id=\"dagens\"]/div[3]/div[3]/div/div[1]",
+    "suffix": "\n\n130 kr, smör & hembakad bröd och bryggkaffe."
   },
   {
     "name": "Cicchetti (5 min)",
