@@ -162,6 +162,7 @@ def log_run_datetime():
     }
     with open("dateTime.json", "w", encoding="utf-8") as f:
         json.dump(run_info, f, indent=4)
-    print(f"Successfully logged run time: {now.strftime('%A, %Y-%m-%d %H:%M:%S')}")
+    log_message = f"{run_info['last_run_day']}, {run_info['last_run_date']} {run_info['last_run_time']}"
+    print(f"Successfully logged run time: {log_message}")
 
 log_run_datetime()
