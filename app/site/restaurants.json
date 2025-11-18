@@ -34,5 +34,11 @@
     "url": "https://www.gemytmedsmak.se/lunch/",
     "xpath": "//td[@class='td_title' and count(preceding::td[@class='td_title']) < 3]",
     "suffix": "149 kr, sallad, surdegsbröd och vatten ingår"
+  },
+  {
+    "name": "Resturang Pascal",
+    "url": "https://www.restaurangpascal.se/pascal-meny",
+    "xpath": "//*[@data-hook=\"items.container\"]",
+    "suffix": "\n\n149 kr."
   }
 ]
