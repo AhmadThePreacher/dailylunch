@@ -21,5 +21,11 @@
     "url": "https://edgekitchen.se/meny",
     "xpath": "//*[@id=\"Section2\"]/div/div/div[3]/div/div/div",
     "suffix": "\n\n149 kr."
+  },
+  {
+    "name": "The Garden - Hyllie Terrass (2 min)",
+    "url": "https://compass.mashie.matildaplatform.com/public/app/hyllie+terrass/bb2a3372?country=se",
+    "xpath": "//div[@class='list-group-item list-group-item-menu' and count(preceding::div[@class='list-group-item list-group-item-menu']) < 3]",
+    "suffix": "138 kr."
   }
 ]

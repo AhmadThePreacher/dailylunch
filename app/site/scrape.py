@@ -104,8 +104,24 @@ for restaurant in restaurants:
         response.raise_for_status() # Raise an exception for bad status codes (4xx or 5xx)
         response.encoding = "utf-8"
         tree = lxml_html.fromstring(response.content)
+
         
         elements = tree.xpath(restaurant["xpath"])
+
+        # Handle The Gardens stupid html
+        if restaurant["name"] == "The Garden - Hyllie Terrass (2 min)":
+            pairs = [(
+                element.xpath('.//strong[@class="app-alternative-name"]/text()')[0].strip(),
+                element.xpath('.//div[@class="app-daymenu-name"]/text()')[0].strip()
+                ) for element in elements]
+            lines = []
+            for alt, day in pairs:
+                lines.append(f"{alt}\n{day}")
+            lines.append(f"{restaurant['suffix']}")
+            today_menu = "\n\n".join(lines)
+            scraped_menus[restaurant["name"]] = today_menu
+            continue
+
         if elements:
             full_menu_text = "\n".join([elem.text_content().strip() for elem in elements if elem.text_content().strip()])
     
