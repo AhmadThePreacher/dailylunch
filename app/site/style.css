@@ -29,17 +29,8 @@ h1 {
     white-space: nowrap;
 }
 
-@media (max-width: 1024px) {
-    h1 {
-        position: static;
-        transform: none;
-        font-size: clamp(40px, 10vw, 60px);
-        text-align: center;
-        margin-bottom: 20px;
-    }
-}
 h2 {
-    font-size: clamp(1rem, 4vw, 1.5rem);
+    font-size: 1.5rem;
 }
 
 #wrapper {
@@ -56,16 +47,6 @@ h2 {
     column-count: 3;
     column-gap: 20px;
     width: 100%;
-}
-
-@media (max-width: 1024px) {
-    #wrapper {
-        padding: 20px 15px;
-    }
-
-    #menu-container {
-        column-count: 1;
-    }
 }
 
 .restaurant {
@@ -107,4 +88,27 @@ p {
 .takeaway-link:hover {
     background-color: #4caf50;
     color: #222;
+}
+
+@media (max-width: 1024px) {
+    #wrapper {
+        padding: 20px 15px;
+    }
+
+    #menu-container {
+        column-count: 1;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    p {
+        font-size: 1.8rem;
+    }
+
+    .takeaway-link {
+        font-size: 1.8rem;
+        padding: 12px 20px;
+    }
 }
