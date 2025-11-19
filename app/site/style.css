@@ -29,7 +29,7 @@ h1 {
     white-space: nowrap;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     h1 {
         position: static;
         transform: none;
@@ -58,7 +58,7 @@ h2 {
     width: 100%;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     #wrapper {
         padding: 20px 15px;
     }
