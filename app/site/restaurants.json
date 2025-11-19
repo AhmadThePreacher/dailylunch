@@ -41,5 +41,11 @@
     "url": "https://compass.mashie.matildaplatform.com/public/app/hyllie+terrass/bb2a3372?country=se",
     "xpath": "//div[@class='list-group-item list-group-item-menu' and count(preceding::div[@class='list-group-item list-group-item-menu']) < 3]",
     "suffix": "138 kr."
+  },
+  {
+    "name": "HEAT Hyllie (3 min)",
+    "url": "https://www.heatrestauranger.se/heat-hyllie/#veckans-lunchmeny",
+    "xpath": "//*[@id=\"veckans-lunchmeny\"]",
+    "suffix": "\n\n154 kr."
   }
 ]
