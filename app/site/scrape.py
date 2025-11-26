@@ -4,6 +4,7 @@ import re
 import io
 from datetime import datetime
 from lxml import html as lxml_html
+from lxml import etree as lxml_etree
 import unicodedata
 import pdfplumber
 
@@ -67,12 +68,60 @@ days_in_swedish_upper = {
 
 current_day = days_in_swedish[datetime.now().strftime("%A")]
 current_day_upper = days_in_swedish_upper[datetime.now().strftime("%A")]
+current_day_id = datetime.now().strftime("%A").lower()
 
 with open("restaurants.json", "r", encoding="utf-8") as file:
     restaurants = json.load(file)
 
 scraped_menus = {}
 for restaurant in restaurants:
+    # Handle XML API (e.g., HEAT)
+    if restaurant.get("type") == "xml_api":
+        try:
+            response = requests.get(restaurant["url"], timeout=10)
+            response.raise_for_status()
+            
+            root = lxml_etree.fromstring(response.content)
+            
+            # Map English day names to Swedish XML field prefixes
+            day_prefix_map = {
+                "monday": "mandag",
+                "tuesday": "tisdag",
+                "wednesday": "onsdag",
+                "thursday": "torsdag",
+                "friday": "fredag",
+                "saturday": "lordag",
+                "sunday": "sondag"
+            }
+            
+            day_prefix = day_prefix_map.get(current_day_id, "mandag")
+            
+            # Extract all menu items for the day
+            menu_items = []
+            for i in range(1, 9):  # HEAT has up to 8 items per day
+                rubrik_tag = f"{day_prefix}ratt{i}rubrik"
+                text_tag = f"{day_prefix}ratt{i}text"
+                
+                rubrik_elem = root.find(f".//{rubrik_tag}")
+                text_elem = root.find(f".//{text_tag}")
+                
+                if rubrik_elem is not None and rubrik_elem.text:
+                    item = rubrik_elem.text
+                    if text_elem is not None and text_elem.text:
+                        item += text_elem.text
+                    menu_items.append(item)
+            
+            if menu_items:
+                today_menu = "\n".join(menu_items)
+                if "suffix" in restaurant:
+                    today_menu += restaurant["suffix"]
+                scraped_menus[restaurant["name"]] = today_menu
+            else:
+                scraped_menus[restaurant["name"]] = f"No menu available for {current_day}."
+        except Exception as e:
+            scraped_menus[restaurant["name"]] = f"Could not fetch menu: {e}"
+        continue
+    
     # Handle PDF with dynamic weekly URL
     if restaurant.get("type") == "pdf_weekly":
         try:
@@ -105,7 +154,12 @@ for restaurant in restaurants:
         response.encoding = "utf-8"
         tree = lxml_html.fromstring(response.content)
         
-        elements = tree.xpath(restaurant["xpath"])
+        # Handle dynamic day_id in xpath
+        xpath = restaurant["xpath"]
+        if restaurant.get("day_id"):
+            xpath = xpath.format(day_id=current_day_id)
+        
+        elements = tree.xpath(xpath)
 
         # Handle The Gardens stupid html
         if restaurant["name"] == "The Garden - Hyllie Terrass (2 min)":
@@ -134,6 +188,9 @@ for restaurant in restaurants:
                     today_menu = today_menu.split("OBS=>")[0].strip()
             elif restaurant["name"] == "Gemyt med SMAK (5 min)":
                 today_menu = full_menu_text + "\n\n"
+            elif restaurant.get("day_id"):
+                # For restaurants with day_id (like HEAT), the xpath already targeted today's menu
+                today_menu = full_menu_text
             else:
                 today_menu = extract_today_menu(full_menu_text, current_day, current_day_upper)
             

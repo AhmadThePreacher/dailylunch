@@ -44,8 +44,8 @@
   },
   {
     "name": "HEAT Hyllie (3 min)",
-    "url": "https://www.heatrestauranger.se/heat-hyllie/#veckans-lunchmeny",
-    "xpath": "//*[@id=\"veckans-lunchmeny\"]",
+    "type": "xml_api",
+    "url": "https://castit.nu/xml/posts.php?c=72&h=a800e34fa2c8f36034180c3f29eedd73&ct=58&s=1447",
     "suffix": "\n\n154 kr."
   }
 ]
