@@ -33,8 +33,9 @@
   {
     "name": "Gemyt med SMAK (5 min)",
     "url": "https://www.gemytmedsmak.se/lunch/",
-    "xpath": "//td[@class='td_title' and count(preceding::td[@class='td_title']) < 3]",
-    "suffix": "149 kr, sallad, surdegsbröd och vatten ingår"
+    "xpath": "//thead[contains(.//h3/text(), '{current_day}')]/following-sibling::tbody[1]//td[@class='td_title']",
+    "day_filter": true,
+    "suffix": "\n\n149 kr, sallad, surdegsbröd och vatten ingår"
   },
   {
     "name": "The Garden - Hyllie Terrass (2 min)",

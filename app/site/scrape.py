@@ -158,6 +158,8 @@ for restaurant in restaurants:
         xpath = restaurant["xpath"]
         if restaurant.get("day_id"):
             xpath = xpath.format(day_id=current_day_id)
+        if restaurant.get("day_filter"):
+            xpath = xpath.format(current_day=current_day)
         
         elements = tree.xpath(xpath)
 
