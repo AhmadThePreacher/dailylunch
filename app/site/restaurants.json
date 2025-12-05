@@ -26,11 +26,6 @@
     "suffix": "\n\n149 kr."
   },
   {
-    "name": "Restaurang Pascal (10 min)",
-    "url": "https://www.restaurangpascal.se/pascal-meny",
-    "xpath": "//*[@data-hook=\"items.container\"]"
-  },
-  {
     "name": "Gemyt med SMAK (5 min)",
     "url": "https://www.gemytmedsmak.se/lunch/",
     "xpath": "//thead[contains(.//h3/text(), '{current_day}')]/following-sibling::tbody[1]//td[@class='td_title']",
