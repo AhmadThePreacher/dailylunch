@@ -1,9 +1,9 @@
 {
-  "Restaurang Spill (1 min)": "Could not fetch page: HTTPSConnectionPool(host='www.restaurangspill.se', port=443): Read timed out. (read timeout=10)",
-  "Cicchetti (5 min)": "No menu available for Söndag.",
-  "Percys (7 min)": "Could not fetch PDF: 404 Client Error: Not Found for url: https://www.malmoarena.com/hubfs/Dagens%20r%C3%A4tt%20v34%202026.pdf?hsLang=sv",
-  "Edge Kitchen (10 min)": "No menu available for Söndag.",
-  "Gemyt med SMAK (5 min)": "Menu container not found on page.",
+  "Restaurang Spill (1 min)": "Tunt skivad kotlett med rostad potatis, morotscreme, vinägerstekt lök & brödkrisp \nFläskfritt finns Vegetarisk: Bakad zucchuni & kikärta med rostad potatis, morotscreme, vinägerstekt lök & brödkrisp \n(Finns vegansk)\n \nVälkomna! 135kr\n\n130 kr, smör & hembakad bröd och bryggkaffe.",
+  "Cicchetti (5 min)": "Lunch vecka 35\n \nKl. 11.00-14.00 mån/mon - fre./fri\nAlla rätter kostar 149 kronor. Bryggkaffe & Sallads Buffet ingår. På fredagar erbjuder vi även lite kaffebröd =)\nAll dishes cost 149 kr. Filter coffee & Salad buffet are included. On Friday´s we include some cake for the coffee =)\n\nVeckans rätt\n\nPasta med tomatsås, Kyckling, mozzarella, vårlök, grana och basilika\nPasta with tomato sauce, chicken, mozzarella, spring onions, grana and basil \nPasta\nPasta Bolognese (köttfärssås á lá Bolognese på blandfärs) med grana och svart peppar\nPasta Carbonara (Äggula, svart peppar, pancetta, grana)\n\nVeg pasta\nPasta med morötskräm, paprika, tomater, persilja, grana och basilika. \nPasta with carrot cream, bell peppers, tomatoes, parsley, grana and basil\n\nSallad\nNektariner– Gurka - Tomater - Ströbröd - Solroskärnor\n Nectarines - Cucumber - Tomatoes – Breadcrumbs – Sunflower seeds\n\nVÄLJA PROTEINER MELLAN BURRATA ELLER KYCKLING.\nCHOOSE THE PROTEIN BETWEEN BURRATA AND CHICKEN.\n\n149 kr, bryggkaffe & sallads buffé ingår.",
+  "Percys (7 min)": "Could not fetch PDF: 404 Client Error: Not Found for url: https://www.malmoarena.com/hubfs/Dagens%20r%C3%A4tt%20v35%202026.pdf?hsLang=sv",
+  "Edge Kitchen (10 min)": "Dagens: Butter chicken marsala med ris, friterad papadum, vårlök, mangochutney\nVegetarisk: Butter qourn marsala med ris, friterad papadum, vårlök, mangochutney\n\n149 kr.",
+  "Gemyt med SMAK (5 min)": "Konfiterat anklår, vaxböna, rökt sidfläsk, schallottenlök, skysås och frissésallad\nKolja med vitvinskokt kronärtskocka, oliver, semitorkad tomat och smörad buljong\nPanerad halloumi, grillad broccoli, matvete, muhammara och mangold\n\n\n\n149 kr, sallad, surdegsbröd och vatten ingår",
   "The Garden - Hyllie Terrass (2 min)": "138 kr.",
-  "HEAT Hyllie (3 min)": "No menu available for Söndag."
+  "HEAT Hyllie (3 min)": "Pannbiff med stekt lök och krämig gräddsås samt stekt rissolepotatis, lingonsylt och smörgåsgurka\nStekt panerad fiskfilé med romsås samt dilldoftande potatismos och citron\nPenne Toni med tärnad ryggbiff, kantareller, grädde och senap samt riven ost och färsk timjan\nVeg. Fetaostfyllda kikärtsbiffar med syrlig yoghurtsås samt varm bulgursallad med färska grönsaker\n\n154 kr."
 }
